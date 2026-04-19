@@ -1,0 +1,30 @@
+version: 0.2
+
+phases:
+  install:
+    runtime-versions:
+      python: 3.11
+    commands:
+      - echo "Installing system dependencies..."
+      - yum update -y
+      - yum install -y python3-pip
+
+  pre_build:
+    commands:
+      - echo "Installing Python dependencies..."
+      - pip3 install --upgrade pip
+      - pip3 install flask
+
+  build:
+    commands:
+      - echo "Build started on `date`"
+      - echo "Flask app ready for deployment"
+
+  post_build:
+    commands:
+      - echo "Build completed on `date`"
+
+artifacts:
+  files:
+    - '**/*'
+  base-directory: .
